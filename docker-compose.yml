@@ -1,13 +1,11 @@
 version: '3.9'
 services: 
   postgres: 
-    container_name: POSTGRES_DB
-    image: postgres:13
+    image: postgres
     ports:                         
       - "5432:5432"                 
     environment:
       - POSTGRES_PASSWORD=mysecretpassword
-      - POSTGRES_DB=postgres       
     networks:
       - user_project
       
@@ -16,13 +14,13 @@ services:
       context: ./
       dockerfile: Dockerfile
     environment:
-      - DATABASE_URL=postgresql://postgres:mysecretpassword@POSTGRES_DB:5432/postgres  
+      - DATABASE_URL=postgresql://postgres:mysecretpassword@postgres:5432/postgres
     ports: 
-      - "3000:3000"                 
+      - "3000:3000"                
     depends_on:
       - postgres
-    networks:                      
+    networks:                       
       - user_project
 
-networks:                         
+networks:                           
   user_project:
