@@ -3,11 +3,10 @@ version: "3.9"
 services: 
   app: 
     build: .
-    
-    port:
+    ports:
      - 3000:3000
     environment:
-      - postgresql://postgres:mysecrepassword@postgres:5432/postgres
+      - DATABASE_URL=postgresql://postgres:mysecrepassword@postgres:5432/postgres
     depends_on:
       - postgres
     networks:
